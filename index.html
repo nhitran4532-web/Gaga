@@ -74,13 +74,13 @@ font-size:12px;
 
 function loadMatch(){
 
-fetch("https://api-gavang.gvtv1.com")
+fetch("match.json")
 .then(res=>res.json())
 .then(json=>{
 
 let html="";
 
-json.data.forEach(m=>{
+json.matches.forEach(m=>{
 
 if(m.is_live){
 
