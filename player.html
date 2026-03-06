@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
-<title>Gà Vàng Player</title>
+<title>Player</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -19,6 +20,7 @@ height:100vh;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -27,18 +29,17 @@ height:100vh;
 
 <script>
 
-var video=document.getElementById("video");
-var link=localStorage.getItem("live");
+let link = localStorage.getItem("live");
+
+var video = document.getElementById('video');
 
 if(Hls.isSupported()){
 
-var hls=new Hls();
+var hls = new Hls();
+
 hls.loadSource(link);
+
 hls.attachMedia(video);
-
-}else{
-
-video.src=link;
 
 }
 
