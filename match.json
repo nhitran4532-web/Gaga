@@ -1,0 +1,30 @@
+{
+  "status": true,
+  "source": "https://api-gavang.gvtv1.com/matches/football",
+  "matches": [
+    {
+      "title": "Mitchelton FC vs Pine Hills",
+      "league": "QLD D2",
+      "team1": "Mitchelton FC",
+      "team2": "Pine Hills",
+      "logo1": "https://img.rapid-api.icu/football/team/aaae6ad7169272ce312e5fea9f3d894e/image/small?v=1768601124",
+      "logo2": "https://img.rapid-api.icu/football/team/c385d7b0a7830a5221aed8680e978622/image/small?v=1768601124",
+      "score1": "2",
+      "score2": "2",
+      "live": true,
+      "stream": "https://live.alilicoud.com/live/c34eb9cffa682f56cf8161a1befa9c74/playlist.m3u8"
+    },
+    {
+      "title": "Redlands United FC vs St George Willawong FC",
+      "league": "Australia Queensland State League 1",
+      "team1": "Redlands United FC",
+      "team2": "St George Willawong FC",
+      "logo1": "https://img.rapid-api.icu/football/team/21d12182372cb259dfcb484b2a7278bd/image/small?v=1768601124",
+      "logo2": "https://img.rapid-api.icu/football/team/d0836b348f9878e690b79b4a9af34128/image/small?v=1768601124",
+      "score1": "0",
+      "score2": "2",
+      "live": true,
+      "stream": "https://live.alilicoud.com/live/09007c5a214f84e1fa5478efee92c941/playlist.m3u8"
+    }
+  ]
+}
