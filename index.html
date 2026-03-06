@@ -82,7 +82,35 @@ let html="";
 
 json.matches.forEach(m=>{
 
-if(m.is_live){
+json.data.forEach(match=>{
+
+let time = match.start_date.split(" ")[1].substring(0,5);
+
+html += `
+<div class="match" onclick="watch('${match.source_live}')">
+
+<div class="team">
+<img src="${match.team_1_logo}">
+<br>
+${match.team_1}
+</div>
+
+<div>
+VS
+<br>
+<span class="time">${time}</span>
+</div>
+
+<div class="team">
+<img src="${match.team_2_logo}">
+<br>
+${match.team_2}
+</div>
+
+</div>
+`;
+
+});
 
 let time = m.start_date.split(" ")[1].slice(0,5);
 
