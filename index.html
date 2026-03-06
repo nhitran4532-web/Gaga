@@ -1,109 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>🐔 Gà Vàng TV</title>
-
-<style>
-body{
-background:#0f172a;
-color:white;
-font-family:Arial;
-margin:0;
-}
-
-.header{
-background:#111827;
-padding:15px;
-text-align:center;
-font-size:22px;
-font-weight:bold;
-}
-
-.live-title{
-color:red;
-padding:10px;
-text-align:center;
-font-weight:bold;
-}
-
-.container{
-padding:10px;
-}
-
-.match{
-background:#1f2937;
-margin:10px 0;
-padding:15px;
-border-radius:10px;
-cursor:pointer;
-}
-
-.match:hover{
-background:#374151;
-}
-
-.team{
-display:flex;
-justify-content:space-between;
-}
-
-.time{
-text-align:center;
-margin-top:5px;
-font-size:14px;
-color:#9ca3af;
-}
-
-.live{
-color:red;
-font-size:12px;
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="header">🐔 Gà Vàng TV</div>
-<div class="live-title">🔴 Trận đang live</div>
-
-<div class="container" id="list"></div>
-
 <script>
 
 function loadMatch(){
 
 fetch("https://raw.githubusercontent.com/nhitran4532-web/Gaga/main/match.json")
+
 .then(res=>res.json())
+
 .then(json=>{
 
 let html="";
 
-json.matches.forEach(m=>{
-
-json.data.forEach(match=>{
+json.matches.forEach(match=>{
 
 let time = match.start_date.split(" ")[1].substring(0,5);
 
 html += `
-<div class="match" onclick="watch('${match.source_live}')">
+<div class="match" onclick="watch('${match.stream}')">
 
 <div class="team">
-<img src="${match.team_1_logo}">
-<br>
 ${match.team_1}
 </div>
 
 <div>
-VS
-<br>
+VS<br>
 <span class="time">${time}</span>
 </div>
 
 <div class="team">
-<img src="${match.team_2_logo}">
-<br>
 ${match.team_2}
 </div>
 
@@ -113,3 +36,15 @@ ${match.team_2}
 });
 
 document.getElementById("list").innerHTML = html;
+
+});
+
+}
+
+function watch(url){
+window.location.href=url;
+}
+
+loadMatch();
+
+</script>
