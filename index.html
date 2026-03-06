@@ -1,8 +1,6 @@
-<script>
-
 function loadMatch(){
 
-fetch("https://raw.githubusercontent.com/nhitran4532-web/Gaga/main/match.json")
+fetch("https://raw.githubusercontent.com/nhitran4532-web/Gaga/refs/heads/main/match.json")
 
 .then(res=>res.json())
 
@@ -10,7 +8,7 @@ fetch("https://raw.githubusercontent.com/nhitran4532-web/Gaga/main/match.json")
 
 let html="";
 
-json.matches.forEach(match=>{
+json.data.forEach(match=>{
 
 let time = match.start_date.split(" ")[1].substring(0,5);
 
@@ -41,10 +39,4 @@ document.getElementById("list").innerHTML = html;
 
 }
 
-function watch(url){
-window.location.href=url;
-}
-
 loadMatch();
-
-</script>
