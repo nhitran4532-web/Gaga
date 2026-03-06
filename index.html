@@ -2,61 +2,71 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Gà Vàng TV</title>
+<title>🐔 Gà Vàng TV</title>
+
 <style>
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+margin:0;
+}
+
+.header{
+background:#111827;
+padding:15px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+}
+
+.live-title{
+color:red;
+padding:10px;
+text-align:center;
 font-weight:bold;
 }
 
 .container{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
 padding:10px;
 }
 
 .match{
-background:white;
+background:#1f2937;
+margin:10px 0;
+padding:15px;
 border-radius:10px;
-padding:10px;
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
+cursor:pointer;
+}
+
+.match:hover{
+background:#374151;
+}
+
+.team{
+display:flex;
+justify-content:space-between;
+}
+
+.time{
+text-align:center;
+margin-top:5px;
+font-size:14px;
+color:#9ca3af;
 }
 
 .live{
 color:red;
 font-size:12px;
 }
-
-.time{
-color:#f97316;
-font-size:13px;
-}
-
-.team{
-display:flex;
-align-items:center;
-gap:5px;
-font-size:13px;
-}
-
-.team img{
-width:28px;
-height:28px;
-}
-
-.vs{
-text-align:center;
-margin:5px 0;
-font-weight:bold;
-}
-
 </style>
+
 </head>
 
 <body>
 
 <div class="header">🐔 Gà Vàng TV</div>
-
-<div class="live-title">🔴 Live</div>
+<div class="live-title">🔴 Trận đang live</div>
 
 <div class="container" id="list"></div>
 
@@ -71,36 +81,25 @@ fetch("https://api-gavang.gvtv1.com")
 let html="";
 
 json.data.forEach(m=>{
+
 if(m.is_live){
 
 let time = m.start_date.split(" ")[1].slice(0,5);
 
 html+=`
+<div class="match" onclick="watch('${m.source_hd}')">
 
-<div class="match" onclick="watch('${m.source_live}')">
+<div class="live">🔴 Live</div>
 
-<div class="live">● Live</div>
-
-<div class="vs">
-
-${m.team_1_score} - ${m.team_2_score}
+<div class="team">
+<div>${m.home_name}</div>
+<div>VS</div>
+<div>${m.away_name}</div>
+</div>
 
 <div class="time">${time}</div>
 
 </div>
-
-<div class="team">
-<img src="${m.team_1_logo}">
-${m.team_1}
-</div>
-
-<div class="team">
-<img src="${m.team_2_logo}">
-${m.team_2}
-</div>
-
-</div>
-
 `;
 
 }
@@ -116,6 +115,7 @@ document.getElementById("list").innerHTML=html;
 function watch(link){
 
 localStorage.setItem("live",link);
+
 location="player.html";
 
 }
