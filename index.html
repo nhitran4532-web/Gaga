@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gà Vàng TV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+background:#f1f5f9;
+margin:0;
+font-family:Arial;
+}
+
+.header{
+background:#22c55e;
+color:white;
+text-align:center;
+padding:15px;
+font-size:22px;
+font-weight:bold;
+}
+
+.live-title{
+padding:10px;
+font-weight:bold;
+}
+
+.container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+padding:10px;
+}
+
+.match{
+background:white;
+border-radius:10px;
+padding:10px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.live{
+color:red;
+font-size:12px;
+}
+
+.time{
+color:#f97316;
+font-size:13px;
+}
+
+.team{
+display:flex;
+align-items:center;
+gap:5px;
+font-size:13px;
+}
+
+.team img{
+width:28px;
+height:28px;
+}
+
+.vs{
+text-align:center;
+margin:5px 0;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">🐔 Gà Vàng TV</div>
+
+<div class="live-title">🔴 Live</div>
+
+<div class="container" id="list"></div>
+
+<script>
+
+function loadMatch(){
+
+fetch("https://api-gavang.gvtv1.com")
+.then(res=>res.json())
+.then(json=>{
+
+let html="";
+
+json.data.forEach(m=>{
+
+if(m.is_live){
+
+let time = m.start_date.split(" ")[1].slice(0,5);
+
+html+=`
+
+<div class="match" onclick="watch('${m.source_live}')">
+
+<div class="live">● Live</div>
+
+<div class="vs">
+
+${m.team_1_score} - ${m.team_2_score}
+
+<div class="time">${time}</div>
+
+</div>
+
+<div class="team">
+<img src="${m.team_1_logo}">
+${m.team_1}
+</div>
+
+<div class="team">
+<img src="${m.team_2_logo}">
+${m.team_2}
+</div>
+
+</div>
+
+`;
+
+}
+
+});
+
+document.getElementById("list").innerHTML=html;
+
+});
+
+}
+
+function watch(link){
+
+localStorage.setItem("live",link);
+location="player.html";
+
+}
+
+loadMatch();
+
+setInterval(loadMatch,5000);
+
+</script>
+
+</body>
+</html>
