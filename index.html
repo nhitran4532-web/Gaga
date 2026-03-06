@@ -91,10 +91,15 @@ html+=`
 
 <div class="live">🔴 Live</div>
 
+html+=`
+<div class="match" onclick="watch('${m.stream}')">
+
+<div class="live">🔴 Live</div>
+
 <div class="team">
-${m.home}
+<div>${m.home}</div>
 <div>VS</div>
-${m.away}
+<div>${m.away}</div>
 </div>
 
 <div class="time">${time}</div>
