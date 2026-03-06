@@ -70,8 +70,7 @@ fetch("https://api-gavang.gvtv1.com")
 
 let html="";
 
-json.matches.forEach(m=>{
-
+json.data.forEach(m=>{
 if(m.is_live){
 
 let time = m.start_date.split(" ")[1].slice(0,5);
